@@ -20,7 +20,6 @@ function score() {
   hideElementById('play-ground');
   showElementById('play-again');
   //* update final score
-  
 }
 
 function continueGame() {
@@ -40,7 +39,7 @@ function handleKeyboardKeyUpEvent(event) {
   const currentLetterElement = document.getElementById('current-letter');
   const currentLetter = currentLetterElement.innerText;
   const expectedLetter = currentLetter.toLowerCase();
-  if (playerPressed === 'escape') {
+  if (playerPressed === 'escape' || playerPressed === 'Escape') {
     removeBackgroundColorById(expectedLetter);
     score();
   } else {
