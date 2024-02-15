@@ -1,3 +1,9 @@
+function home() {
+  //* hide everything
+  showElementById('home');
+  hideElementById('play-ground');
+  hideElementById('play-again');
+}
 function play() {
   //* hide everything
   hideElementById('home');
@@ -13,6 +19,8 @@ function score() {
   hideElementById('home');
   hideElementById('play-ground');
   showElementById('play-again');
+  //* update final score
+  
 }
 
 function continueGame() {
@@ -23,36 +31,39 @@ function continueGame() {
   currentLetterElement.innerText = letter.toUpperCase();
   //* 3- set background color
   setBackgroundColorById(letter);
-
 }
 
 function handleKeyboardKeyUpEvent(event) {
-  const playerPressed = event.key;
-
+  const playerPressed = event.key.toLowerCase();
+  console.log(playerPressed);
   //* get the expected key to press
   const currentLetterElement = document.getElementById('current-letter');
   const currentLetter = currentLetterElement.innerText;
   const expectedLetter = currentLetter.toLowerCase();
-
-  //* check key-press matched or not
-  if (playerPressed === expectedLetter) {
-    //* update score
-    const currentScore = getTextElementValueById('current-score');
-    const newScore = currentScore + 1;
-    setTextElementValueById('current-score', newScore);
-    setTextElementValueById('last-score', newScore);
-    //* start a new round
+  if (playerPressed === 'escape') {
     removeBackgroundColorById(expectedLetter);
-    continueGame();
+    score();
   } else {
-    //* update life
-    const currentLife = getTextElementValueById('current-life');
-    const newLife = currentLife - 1;
-    setTextElementValueById('current-life', newLife);
-    if (newLife === 0) {
-      //* go to score board
+    //* check key-press matched or not
+    if (playerPressed === expectedLetter) {
+      //* update score
+      const currentScore = getTextElementValueById('current-score');
+      const newScore = currentScore + 1;
+      setTextElementValueById('current-score', newScore);
+      setTextElementValueById('last-score', newScore);
+      //* start a new round
       removeBackgroundColorById(expectedLetter);
-      score();
+      continueGame();
+    } else {
+      //* update life
+      const currentLife = getTextElementValueById('current-life');
+      const newLife = currentLife - 1;
+      setTextElementValueById('current-life', newLife);
+      if (newLife === 0) {
+        //* go to score board
+        removeBackgroundColorById(expectedLetter);
+        score();
+      }
     }
   }
 }
