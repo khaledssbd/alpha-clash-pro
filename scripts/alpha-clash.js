@@ -12,6 +12,7 @@ function play() {
   //* reset score and life
   setTextElementValueById('current-score', 0);
   setTextElementValueById('current-life', 5);
+  setTextElementValueById('last-score', 0);
   //* start game
   continueGame();
 }
@@ -34,7 +35,6 @@ function continueGame() {
 
 function handleKeyboardKeyUpEvent(event) {
   const playerPressed = event.key.toLowerCase();
-  console.log(playerPressed);
   //* get the expected key to press
   const currentLetterElement = document.getElementById('current-letter');
   const currentLetter = currentLetterElement.innerText;

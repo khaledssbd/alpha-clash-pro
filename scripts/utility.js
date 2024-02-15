@@ -9,11 +9,11 @@ function showElementById(elementId) {
 
 function getARandomLetter() {
   //* 1- get or create a random letter array
-  const letterString = 'abcde[fghij]klm.nopq,rs;tuv/wxyz';
+  const letterString = "abcdefghij]kl'[m.nopq,rs;tuv/wxyz";
   const letters = letterString.split('');
 
   //* Get a random index between 0-31
-  const randomNumber = Math.random() * 31;
+  const randomNumber = Math.random() * 32;
   const index = Math.round(randomNumber);
   const letter = letters[index];
   return letter;
