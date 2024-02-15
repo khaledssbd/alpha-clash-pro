@@ -1,26 +1,18 @@
-// function play() {
-//   //* step-1: to hide the home-screen add the class hidden to the home section
-//   const homeSection = document.getElementById('home');
-//        homeSection.classList.add('hidden');
-
-//   //* step-2: to show the playground remove the class hidden from the playground section
-//   const playGround = document.getElementById('play-ground');
-//   playGround.classList.remove('hidden');
-// }
-
 function play() {
+  //* hide everything
   hideElementById('home');
   showElementById('play-ground');
+  hideElementById('play-again');
+  //* reset score and life
+  setTextElementValueById('current-score', 0);
+  setTextElementValueById('current-life', 5);
+  //* start game
   continueGame();
 }
 function score() {
+  hideElementById('home');
   hideElementById('play-ground');
   showElementById('play-again');
-}
-
-function playAgain() {
-  hideElementById('play-again');
-  showElementById('home');
 }
 
 function continueGame() {
@@ -31,4 +23,39 @@ function continueGame() {
   currentLetterElement.innerText = letter.toUpperCase();
   //* 3- set background color
   setBackgroundColorById(letter);
+
 }
+
+function handleKeyboardKeyUpEvent(event) {
+  const playerPressed = event.key;
+
+  //* get the expected key to press
+  const currentLetterElement = document.getElementById('current-letter');
+  const currentLetter = currentLetterElement.innerText;
+  const expectedLetter = currentLetter.toLowerCase();
+
+  //* check key-press matched or not
+  if (playerPressed === expectedLetter) {
+    //* update score
+    const currentScore = getTextElementValueById('current-score');
+    const newScore = currentScore + 1;
+    setTextElementValueById('current-score', newScore);
+    setTextElementValueById('last-score', newScore);
+    //* start a new round
+    removeBackgroundColorById(expectedLetter);
+    continueGame();
+  } else {
+    //* update life
+    const currentLife = getTextElementValueById('current-life');
+    const newLife = currentLife - 1;
+    setTextElementValueById('current-life', newLife);
+    if (newLife === 0) {
+      //* go to score board
+      removeBackgroundColorById(expectedLetter);
+      score();
+    }
+  }
+}
+
+//* capture keyboard key-press
+document.addEventListener('keyup', handleKeyboardKeyUpEvent);

@@ -17,7 +17,7 @@
               <!-- home screen -->
               <section id="home" class="min-h-screen text-white flex items-center justify-center">
                      <div class="flex flex-col items-center gap-10">
-                            <h1 class="text-8xl font-anton uppercase">Alpha Clash..!</h1>
+                            <h1 class="text-8xl font-anton uppercase">Alpha Clash Pro..!</h1>
                             <p class="font-poppins">Unleash Your Keyboard Kung Fu : Press “Enter” to Play</p>
                             <button onclick="play()" class="btn bg-white text-violet-500">Play Now</button>
                      </div>
@@ -74,10 +74,13 @@
                             </div>
                             <!-- life-score -->
                             <div class="flex justify-between w-3/5">
+                                   <!-- display life -->
                                    <button class="btn rounded-full bg-[#894189] text-white px-6">Life<img
-                                                 src="images/heart.svg" alt=""><span>1</span></button>
-                                   <button onclick="score()" class="btn rounded-full bg-[#360490] text-white px-6">Score<img
-                                                 src="images/dollar.svg" alt=""><span>1</span></button>
+                                                 src="images/heart.svg" alt=""><span id="current-life">5</span></button>
+                                   <!-- display score -->
+                                   <button class="btn rounded-full bg-[#360490] text-white px-6">Score<img
+                                                 src="images/dollar.svg" alt=""><span
+                                                 id="current-score">0</span></button>
                             </div>
                      </div>
               </section>
@@ -86,10 +89,11 @@
                      <div class="flex flex-col items-center justify-center min-h-screen">
                             <div
                                    class="flex flex-col items-center rounded-2xl border-[1px] border-white bg-[#ffffff33]  px-12">
+                                   <h1 class="text-4xl font-bold mt-4 text-white">Game Over !</h1>
                                    <h1 class="text-8xl"> <span
-                                                 class="font-extrabold text-[64px] text-white mt-11">Score:</span> <span
-                                                 class="font-medium text-[64px] text-white">14</span></h1>
-                                   <div><button onclick="playAgain()"
+                                                 class="font-extrabold text-[64px] text-white mt-11">Score:</span> <span id="last-score"
+                                                 class="font-medium text-[64px] text-white"></span></h1>
+                                   <div><button onclick="play()"
                                                  class=" rounded-lg bg-white text-black text-2xl font-semibold border-0 py-4 px-8 my-4">Play
                                                  Again</button></div>
                                    <p class="text-white text-[20px]  font-medium mb-11">Practice will make you Pro</p>
