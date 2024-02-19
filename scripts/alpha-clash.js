@@ -26,20 +26,13 @@ function score() {
   hideElementById('home');
   hideElementById('play-ground');
   showElementById('play-again');
-  //* update final score
+  isGamePlayOn = false;
 }
 
-function continueGame() {
-  //* 1- generate a random letter
-  const letter = getARandomLetter();
-  //* 2- set random letter to the screen (show it)
-  const currentLetterElement = document.getElementById('current-letter');
-  currentLetterElement.innerText = letter.toUpperCase();
-  //* 3- set background color
-  setBackgroundColorById(letter);
-}
 let audio = new Audio();
+let isGamePlayOn = false;
 function handleKeyboardKeyUpEvent(event) {
+  if ((isGamePlayOn == false)) return;
   const playerPressed = event.key.toLowerCase();
   //* get the expected key to press
   const currentLetterElement = document.getElementById('current-letter');
@@ -77,6 +70,17 @@ function handleKeyboardKeyUpEvent(event) {
       }
     }
   }
+}
+
+function continueGame() {
+  isGamePlayOn = true;
+  //* 1- generate a random letter
+  const letter = getARandomLetter();
+  //* 2- set random letter to the screen (show it)
+  const currentLetterElement = document.getElementById('current-letter');
+  currentLetterElement.innerText = letter.toUpperCase();
+  //* 3- set background color
+  setBackgroundColorById(letter);
 }
 
 //* capture keyboard key-press
