@@ -5,6 +5,9 @@ function home() {
   hideElementById('play-again');
 }
 function play() {
+  //* play audio
+  audio.src = '../audio/open.mp3';
+  audio.play();
   //* hide everything
   hideElementById('home');
   showElementById('play-ground');
@@ -17,6 +20,9 @@ function play() {
   continueGame();
 }
 function score() {
+  //* play audio
+  audio.src = '../audio/success.mp3';
+  audio.play();
   hideElementById('home');
   hideElementById('play-ground');
   showElementById('play-again');
@@ -32,7 +38,7 @@ function continueGame() {
   //* 3- set background color
   setBackgroundColorById(letter);
 }
-
+let audio = new Audio();
 function handleKeyboardKeyUpEvent(event) {
   const playerPressed = event.key.toLowerCase();
   //* get the expected key to press
@@ -45,6 +51,9 @@ function handleKeyboardKeyUpEvent(event) {
   } else {
     //* check key-press matched or not
     if (playerPressed === expectedLetter) {
+      //* play audio
+      audio.src = '../audio/click.mp3';
+      audio.play();
       //* update score
       const currentScore = getTextElementValueById('current-score');
       const newScore = currentScore + 1;
@@ -54,6 +63,9 @@ function handleKeyboardKeyUpEvent(event) {
       removeBackgroundColorById(expectedLetter);
       continueGame();
     } else {
+      //* play audio
+      audio.src = '../audio/wrong.mp3';
+      audio.play();
       //* update life
       const currentLife = getTextElementValueById('current-life');
       const newLife = currentLife - 1;
