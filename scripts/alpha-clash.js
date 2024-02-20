@@ -106,7 +106,7 @@ function continueGame() {
 document.addEventListener('keyup', handleKeyboardKeyUpEvent);
 
 function modalOpen(event) {
-  if (event.clientY < 20) {
+  if (event.clientY < 5) {
     modalBox.style.display = 'flex';
   }
 }
