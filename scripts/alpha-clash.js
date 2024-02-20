@@ -1,3 +1,6 @@
+const artBoard = document.getElementById('art-board');
+const modalBox = document.getElementById('modal-box');
+
 function home() {
   //* hide everything
   showElementById('home');
@@ -32,7 +35,7 @@ function score() {
 let audio = new Audio();
 let isGamePlayOn = false;
 function handleKeyboardKeyUpEvent(event) {
-  if ((isGamePlayOn == false)) return;
+  if (isGamePlayOn == false) return;
   const playerPressed = event.key.toLowerCase();
   //* get the expected key to press
   const currentLetterElement = document.getElementById('current-letter');
@@ -63,9 +66,25 @@ function handleKeyboardKeyUpEvent(event) {
       const currentLife = getTextElementValueById('current-life');
       const newLife = currentLife - 1;
       setTextElementValueById('current-life', newLife);
+      newLifePercentage = (newLife / 5) * 100;
+      artBoard.style.background = `linear-gradient(#FFFFFFB3 ${newLifePercentage}%, red)`;
+
+      /* ---> upore er dynamic newLifePercentage kora ache ------
+      if (newLife === 4) {
+        artBoard.style.background = 'linear-gradient(#FFFFFFB3 75%, red)';
+      } else if (newLife === 3) {
+        artBoard.style.background = 'linear-gradient(#FFFFFFB3 60%, red)';
+      } else if (newLife === 2) {
+        artBoard.style.background = 'linear-gradient(#FFFFFFB3 40%, red)';
+      } else if (newLife === 1) {
+        artBoard.style.background = 'linear-gradient(#FFFFFFB3 20%, red)';
+      }
+      */
+
       if (newLife === 0) {
         //* go to score board
         removeBackgroundColorById(expectedLetter);
+        artBoard.style.background = 'linear-gradient(#FFFFFFB3 100%, red)';
         score();
       }
     }
@@ -85,3 +104,13 @@ function continueGame() {
 
 //* capture keyboard key-press
 document.addEventListener('keyup', handleKeyboardKeyUpEvent);
+
+function modalOpen(event) {
+  if (event.clientY < 20) {
+    modalBox.style.display = 'flex';
+  }
+}
+
+function modalClose() {modalBox.style.display = 'none';}
+
+document.body.onmousemove = modalOpen;
